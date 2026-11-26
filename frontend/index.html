@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Exam Timetable Generator – Graph Coloring</title>
+<link rel="stylesheet" href="style.css"></head><body>
+<header><div><h1>Exam Timetable Generator <small>· Graph Coloring + Backtracking</small></h1></div><small>Kangna · Roll No. 2501060041 · Algorithms Capstone</small></header>
+<nav id="nav"></nav>
+<main>
+<section class="v on" id="v-dash">
+ <div class="kpis" id="kpis"></div><div id="status"></div>
+ <div class="g2"><div class="c"><h2>Conflict graph (colour = exam slot)</h2><div class="sc" id="graph"></div></div>
+ <div class="c"><h2>Subjects per slot</h2><div id="bars"></div><h2 style="margin-top:18px">Students per slot (max load)</h2><div id="load"></div></div></div>
+</section>
+<section class="v" id="v-in">
+ <div class="g2"><div class="c"><h2>Student enrolments</h2><label>One student per line → Name: SUBJ1, SUBJ2, …</label><textarea id="data"></textarea>
+ <div class="row"><button class="btn" id="gen">Generate timetable</button><button class="btn s" id="rnd">Random sample</button><button class="btn s" id="rst">Reset</button></div></div>
+ <div class="c"><h2>Settings</h2><div class="row"><div><label>Exam start date</label><input type="date" id="sd"></div><div><label>Sessions per day</label><select id="spd"><option>1</option><option selected>2</option><option>3</option></select></div></div>
+ <p style="color:var(--mu);font-size:13px">Two subjects are joined by an edge when at least one student takes both. The backtracking colouring then finds the minimum number of slots so that no student has two exams at once. Sundays are skipped.</p></div></div>
+</section>
+<section class="v" id="v-tt"><div class="c"><div class="row noprint" style="margin-top:0"><button class="btn s" id="csv">Download CSV</button><button class="btn s" onclick="print()">Print / Save PDF</button></div><div class="sc" id="tt"></div></div></section>
+<section class="v" id="v-al"><div class="g2"><div class="c"><h2>Backtracking vs Greedy</h2><div class="sc" id="cmp"></div><p style="color:var(--mu);font-size:13px">Greedy (Welsh–Powell) is fast but may use extra slots. Backtracking tries m = 1, 2, 3… so the first m that works is the true minimum (chromatic number).</p></div>
+<div class="c"><h2>Complexity</h2><table><tr><th>Build graph</th><td>O(S·k² ) for S students, k subjects each</td></tr><tr><th>Backtracking</th><td>O(m<sup>V</sup>) worst case, pruned by degree ordering &amp; symmetry breaking</td></tr><tr><th>Greedy</th><td>O(V² )</td></tr><tr><th>Space</th><td>O(V + E)</td></tr></table></div>
+<div class="c" style="grid-column:1/-1"><h2>Search log</h2><div class="log" id="log"></div></div></div></section>
+</main>
+<script src="script.js"></script></body></html>
